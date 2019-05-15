@@ -30,7 +30,12 @@ function create-user {
 }
 
 function create-database {
-  createdb $database
+  if [ -z ${SKIP_CREATE_DATABASE+x} ]; then
+    createdb $database
+  else
+    echo "Skipping database creation"
+  fi
+
   echo
 }
 
